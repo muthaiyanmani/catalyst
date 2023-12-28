@@ -1,0 +1,6 @@
+{
+    "name": "hosted",
+    "version": "0.0.2",
+    "homepage": "index.html",
+    "//login_redirect": "#/dashboard"
+}
