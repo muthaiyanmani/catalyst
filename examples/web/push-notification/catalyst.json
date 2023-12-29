@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "targets": [
+      "push_notification"
+    ],
+    "ignore": [],
+    "source": "functions"
+  },
+  "client": {
+    "source": "react",
+    "plugin": "zcatalyst-cli-plugin-react"
+  }
+}
