@@ -1,16 +1,6 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
-
-const people = [
-  {
-    name: "Lindsay Walton",
-    title: "Front-end Developer",
-    email: "lindsay.walton@example.com",
-    role: "Member"
-  }
-  // More people...
-];
+import { PlusIcon } from "@heroicons/react/20/solid";
 
 const initialValues = {
   title: "",
@@ -20,7 +10,6 @@ const initialValues = {
 export default function TodoList() {
   const [newTodo, setNewTodo] = useState(initialValues);
   const [todos, setTodos] = useState([]);
-  const [selectedPeople, setSelectedPeople] = useState([]);
   const [open, setOpen] = useState(false);
   const cancelButtonRef = useRef(null);
 
@@ -54,7 +43,7 @@ export default function TodoList() {
     }
   };
 
-  const markAsComplete = async (id) => { 
+  const markAsComplete = async (id) => {
     try {
       const tableInstance = window.catalyst.table.tableId("MyTodos");
       await tableInstance.updateRow([{ ROWID: id, is_completed: true }]);
@@ -63,7 +52,7 @@ export default function TodoList() {
     } catch (err) {
       alert("Something went wrong! Please try again.");
     }
-  }
+  };
   return (
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="sm:flex sm:items-center">
@@ -85,71 +74,108 @@ export default function TodoList() {
           </button>
         </div>
       </div>
-      <div className="flow-root mt-8">
-        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-            <div className="relative">
-              <table className="min-w-full divide-y divide-gray-300 table-fixed">
-                <thead>
-                  <tr>
-                    <th scope="col" className="relative px-7 sm:w-12 sm:px-6">
-                      {" "}
-                    </th>
-                    <th
-                      scope="col"
-                      className="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"
-                    >
-                      Task
-                    </th>
-                    <th
-                      scope="col"
-                      className="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"
-                    >
-                      Description
-                    </th>
-                    <th
-                      scope="col"
-                      className="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"
-                    >
-                      Created Time
-                    </th>
-                    <th
-                      scope="col"
-                      className="relative py-3.5 pl-3 pr-4 sm:pr-3"
-                    >
-                      <span className="sr-only">Edit</span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200 ">
-                  {todos.map(({ ROWID, title, CREATEDTIME, description }) => (
-                    <tr key={ROWID}>
-                      <td className="relative px-7 sm:w-12 sm:px-6"></td>
-                      <td className="py-4 pr-3 text-sm font-medium whitespace-nowrap">
-                        {title}
-                      </td>
-                      <td className="py-4 pr-3 text-sm font-medium whitespace-nowrap">
-                        {description}
-                      </td>
-                      <td className="py-4 pr-3 text-sm font-medium whitespace-nowrap">
-                        {CREATEDTIME}
-                      </td>
-                      <td className="py-4 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-3">
-                        <button
-                          onClick={() => markAsComplete(ROWID)}
-                          className="text-indigo-600 hover:text-indigo-900"
-                        >
-                          Mark as Complete<span className="sr-only">, {ROWID}</span>
-                        </button>
-                      </td>
+      {todos.length ? (
+        <div className="flow-root mt-8">
+          <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+              <div className="relative">
+                <table className="min-w-full divide-y divide-gray-300 table-fixed">
+                  <thead>
+                    <tr>
+                      <th scope="col" className="relative px-7 sm:w-12 sm:px-6">
+                        {" "}
+                      </th>
+                      <th
+                        scope="col"
+                        className="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"
+                      >
+                        Task
+                      </th>
+                      <th
+                        scope="col"
+                        className="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"
+                      >
+                        Description
+                      </th>
+                      <th
+                        scope="col"
+                        className="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"
+                      >
+                        Created Time
+                      </th>
+                      <th
+                        scope="col"
+                        className="relative py-3.5 pl-3 pr-4 sm:pr-3"
+                      >
+                        <span className="sr-only">Edit</span>
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200 ">
+                    {todos.map(({ ROWID, title, CREATEDTIME, description }) => (
+                      <tr key={ROWID}>
+                        <td className="relative px-7 sm:w-12 sm:px-6"></td>
+                        <td className="py-4 pr-3 text-sm font-medium whitespace-nowrap">
+                          {title}
+                        </td>
+                        <td className="py-4 pr-3 text-sm font-medium whitespace-nowrap">
+                          {description}
+                        </td>
+                        <td className="py-4 pr-3 text-sm font-medium whitespace-nowrap">
+                          {CREATEDTIME}
+                        </td>
+                        <td className="py-4 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-3">
+                          <button
+                            onClick={() => markAsComplete(ROWID)}
+                            className="text-indigo-600 hover:text-indigo-900"
+                          >
+                            Mark as Complete
+                            <span className="sr-only">, {ROWID}</span>
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <div className="mt-40 text-center">
+          <svg
+            className="w-12 h-12 mx-auto text-gray-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              vectorEffect="non-scaling-stroke"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"
+            />
+          </svg>
+          <h3 className="mt-2 text-sm font-semibold text-gray-900">
+            No tasks found
+          </h3>
+          <p className="mt-1 text-sm text-gray-500">
+            Get started by creating a new task.
+          </p>
+          <div className="mt-6">
+            <button
+              type="button"
+              onClick={() => setOpen(true)}
+              className="inline-flex items-center px-3 py-2 text-sm font-semibold text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              <PlusIcon className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
+              New Todo
+            </button>
+          </div>
+        </div>
+      )}
 
       <Transition.Root show={open} as={Fragment}>
         <Dialog
