@@ -8,17 +8,8 @@ This example demonstrates how to use the Catalyst SDK for authentication in a Re
 
 Demo URL - <https://webauththirdpartyreact-840233827.development.catalystserverless.com>
 
-> This template works without using Catalyst CLI
 
-Things to be done to without using Catalyst CLI
- -   Set up the proxy configuration for catalyst reserved routes
- -   Initialise the web sdk explicitly.
- -   Always start your development server in this port range **3000 - 3010** to use catalyst authentication in dev setup.
--   After build files, append a prefix "/app/" in the scripts and links path in the index.html
-- Create a *client-package.json* file and add the client config [ refer the source code ]
-- Zip the build and upload the zip file in the web client hosting service
-  
-Sure, here are the corrected steps:
+> This template works without using Catalyst CLI
 
 ### Steps to build a frontend app without using Catalyst CLI
 1.  Set up the proxy configuration for Catalyst reserved routes.
@@ -30,4 +21,4 @@ Sure, here are the corrected steps:
 
 
 ### Auth0 Configuration
-![Configuration details](/auth0-config.png)
+<img width="619" alt="Screenshot 2023-12-29 at 7 18 11 AM" src="https://github.com/muthaiyanmani/catalyst/assets/56546428/40538d7d-cb0b-4fd7-acc7-664611c67263">
